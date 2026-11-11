@@ -37,7 +37,7 @@ if ! wp core is-installed --path=/var/www/html --allow-root; then
         --allow-root
 fi
 
-if ! wp user get wp_user --field=ID --path=/var/www/html --allow-root >/dev/null 2>&1; then
+if ! wp user get "$WP_USER" --field=ID --path=/var/www/html --allow-root >/dev/null 2>&1; then
     wp user create "$WP_USER" "$WP_USER_EMAIL" \
         --role=editor \
         --user_pass="$WP_USER_PASSWORD" \

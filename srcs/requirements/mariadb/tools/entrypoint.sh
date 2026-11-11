@@ -13,8 +13,9 @@ if [ ! -d /var/lib/mysql/mysql ]; then
 
     mariadb-install-db --user=mysql --datadir=/var/lib/mysql
 
-    cat > /tmp/init.sql <<EOF
+cat > /tmp/init.sql <<EOF
 ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
+DROP USER IF EXISTS ''@'localhost';
 CREATE DATABASE IF NOT EXISTS \`${MYSQL_DATABASE}\`;
 CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'%' IDENTIFIED BY '${DB_PASSWORD}';
 GRANT ALL PRIVILEGES ON \`${MYSQL_DATABASE}\`.* TO '${MYSQL_USER}'@'%';
