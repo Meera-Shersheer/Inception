@@ -17,10 +17,11 @@ build: data
 clean:
 	$(COMPOSE) down
 
+
 fclean:
 	@test -n "$(HOST_DATA_PATH)" || { echo "Error: HOST_DATA_PATH is missing from srcs/.env"; exit 1; }
 	$(COMPOSE) down --rmi all -v
-	rm -rf $(HOST_DATA_PATH)/wordpress $(HOST_DATA_PATH)/mariadb
+	@sudo rm -rf "$(HOST_DATA_PATH)/wordpress" "$(HOST_DATA_PATH)/mariadb"
 
 ps:
 	$(COMPOSE) ps
@@ -29,11 +30,12 @@ logs:
 	$(COMPOSE) logs
 
 secrets:
-	mkdir -p secrets
+	@mkdir -p secrets
 	@test -s secrets/db_root_password.txt || openssl rand -base64 32 > secrets/db_root_password.txt
 	@test -s secrets/db_password.txt || openssl rand -base64 32 > secrets/db_password.txt
 	@test -s secrets/wp_admin_password.txt || openssl rand -base64 32 > secrets/wp_admin_password.txt
-	@chmod 600 secrets/db_root_password.txt secrets/db_password.txt secrets/wp_admin_password.txt
+	@test -s secrets/wp_user_password.txt || openssl rand -base64 32 > secrets/wp_user_password.txt
+	@chmod 600 secrets/db_root_password.txt secrets/db_password.txt secrets/wp_admin_password.txt secrets/wp_user_password.txt
 
 re: fclean all
 

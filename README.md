@@ -59,6 +59,7 @@ The required secret files are:
 secrets/db_root_password.txt
 secrets/db_password.txt
 secrets/wp_admin_password.txt
+wp_user_password.txt
 ```
 The Makefile generates missing secret files and preserves existing ones. These files must not be committed to Git.
 
@@ -263,6 +264,7 @@ Inception/
 │   ├── db_root_password.txt
 │   ├── db_password.txt
 │   └── wp_admin_password.txt
+│   └── wp_user_password.txt
 └── srcs/
     ├── .env
     ├── docker-compose.yml
@@ -330,6 +332,7 @@ Inception/
 │   ├── db_root_password.txt
 │   ├── db_password.txt
 │   └── wp_admin_password.txt
+│   └── wp_user_password.txt
 └── srcs/
     ├── .env
     ├── docker-compose.yml

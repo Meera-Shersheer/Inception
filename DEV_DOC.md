@@ -52,6 +52,7 @@ Inception/
 │   ├── db_password.txt
 │   ├── db_root_password.txt
 │   └── wp_admin_password.txt
+│   └── wp_user_password.txt
 └── srcs/
     ├── .env
     ├── docker-compose.yml
@@ -113,6 +114,7 @@ The project uses three secret files:
 | `secrets/db_root_password.txt` | MariaDB root password |
 | `secrets/db_password.txt` | Password for the WordPress database user |
 | `secrets/wp_admin_password.txt` | Initial WordPress administrator password |
+| `secrets/wp_user_password.txt` | Initial WordPress user password |
 
 The Makefile automatically generates any missing secret files using OpenSSL:
 
@@ -125,7 +127,9 @@ It also applies restrictive file permissions:
 ```bash
 chmod 600 secrets/db_root_password.txt \
            secrets/db_password.txt \
-           secrets/wp_admin_password.txt
+           secrets/wp_admin_password.txt \
+           secrets/wp_user_password.txt
+           
 ```
 
 The secrets are provided to the relevant containers as files under `/run/secrets/`.

@@ -3,6 +3,7 @@ set -eu
 
 DB_PASSWORD=$(cat /run/secrets/db_password)
 WP_ADMIN_PASSWORD=$(cat /run/secrets/wp_admin_password)
+WP_USER_PASSWORD=$(cat /run/secrets/wp_user_password)
 
 if [ ! -f /var/www/html/index.php ]; then
     mkdir -p /var/www/html
@@ -35,5 +36,13 @@ if ! wp core is-installed --path=/var/www/html --allow-root; then
         --skip-email \
         --allow-root
 fi
-## the other user
+
+if ! wp user get wp_user --field=ID --path=/var/www/html --allow-root >/dev/null 2>&1; then
+    wp user create "$WP_USER" "$WP_USER_EMAIL" \
+        --role=editor \
+        --user_pass="$WP_USER_PASSWORD" \
+        --path=/var/www/html \
+        --allow-root
+fi
+
 exec php-fpm8.2 -F

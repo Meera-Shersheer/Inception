@@ -102,6 +102,7 @@ The required files are:
 | `secrets/db_root_password.txt` | MariaDB root account password |
 | `secrets/db_password.txt` | Password for the WordPress database user |
 | `secrets/wp_admin_password.txt` | Initial WordPress administrator password |
+| `secrets/wp_user_password.txt` | Initial WordPress user password |
 
 The WordPress administrator username is configured as `meera`.
 
@@ -116,7 +117,7 @@ The WordPress administrator username is configured as `meera`.
 
 WordPress administrator credentials can be managed through the WordPress administration panel.
 
-The initial administrator password is supplied during the first WordPress installation. Changing the contents of `wp_admin_password.txt` later does not automatically change the password of an already-created WordPress account.
+The initial administrator password is supplied during the first WordPress installation. Changing the contents of `wp_admin_password.txt` or `wp_user_password` later does not automatically change the password of an already-created WordPress account.
 
 Database passwords require additional care. Changing `db_password.txt` or `db_root_password.txt` alone does not update the corresponding MariaDB account or the existing WordPress database configuration. The database account and application configuration must be updated consistently.
 
