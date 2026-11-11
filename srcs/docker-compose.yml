@@ -2,7 +2,7 @@ services:
   nginx:
     build: ./requirements/nginx/
     container_name: nginx
-    image: inception-nginx
+    image: nginx
     restart: unless-stopped
     ports:
       - "443:443"
@@ -23,7 +23,7 @@ services:
   wordpress:
     build: ./requirements/wordpress/
     container_name: wordpress
-    image: inception-wordpress
+    image: wordpress
     restart: unless-stopped
     env_file:
       - .env
@@ -48,7 +48,7 @@ services:
   mariadb:
     build: ./requirements/mariadb/
     container_name: mariadb
-    image: inception-mariadb
+    image: mariadb
     restart: unless-stopped
     env_file:
       - .env
