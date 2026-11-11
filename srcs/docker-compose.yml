@@ -6,6 +6,8 @@ services:
     restart: unless-stopped
     ports:
       - "443:443"
+    volumes:
+      - wordpress_vol:/var/www/html:ro
     env_file:
       - .env
     depends_on:

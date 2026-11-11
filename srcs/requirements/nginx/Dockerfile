@@ -5,7 +5,6 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/* 
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
-COPY html/index.html /var/www/html/index.html
 
 RUN mkdir -p /etc/nginx/ssl && \
     openssl req -x509 -nodes -newkey rsa:2048 -days 365 \
