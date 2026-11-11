@@ -29,15 +29,6 @@ ps:
 logs:
 	$(COMPOSE) logs
 
-secrets:
-	@mkdir -p secrets
-	@test -s secrets/db_root_password.txt || openssl rand -base64 32 > secrets/db_root_password.txt
-	@test -s secrets/db_password.txt || openssl rand -base64 32 > secrets/db_password.txt
-	@test -s secrets/wp_admin_password.txt || openssl rand -base64 32 > secrets/wp_admin_password.txt
-	@test -s secrets/wp_user_password.txt || openssl rand -base64 32 > secrets/wp_user_password.txt
-	@chmod 600 secrets/db_root_password.txt secrets/db_password.txt secrets/wp_admin_password.txt secrets/wp_user_password.txt
-
 re: fclean all
 
-.PHONY: all build clean fclean re ps logs secrets
- 
+.PHONY: all build clean fclean re ps logs
